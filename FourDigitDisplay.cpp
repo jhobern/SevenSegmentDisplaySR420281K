@@ -14,8 +14,6 @@ FourDigitDisplay::FourDigitDisplay(const int digitPins[], const int segmentPins[
 		segmentPins_[i] = segmentPins[i];
 	}
 
-	memcpy(segmentPins_, segmentPins, num_segments_ * 2);
-
 	//set all of the digit pins to be OUTPUTS, and set them to HIGH, because HIGH == Off
 	for(int i=0;i<num_digits_;i++)
 	{
@@ -41,7 +39,6 @@ void FourDigitDisplay::displayCharacter(const char& character, const char& posit
 			digitalWrite(digitPins_[i], LOW);
 		}
 	}
-
 
 	//segments is used to point to the correct set of segments for displaying the character
 	const int* segments;
@@ -89,7 +86,9 @@ void FourDigitDisplay::displayCharacter(const char& character, const char& posit
 	}
 
 	//this delay is required in order to stop the characters "bleeding" into other positions
-	delay(5);
+	//If the delay is too high, there will be flickering on the digits. If the display is too low
+	//the will be bleeding.
+	delay(4);
 }
 
 void FourDigitDisplay::displayDigit(const char& value, const char& position)

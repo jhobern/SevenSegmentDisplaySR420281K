@@ -89,7 +89,7 @@ private:
 	//charactersSegments_[c-'a'] is an array, with 1 in position m if segment m should be turned on
 	//in order to display character c correctly, and a 0 in position m otherwise.
 	const char characterSegments_[26][num_segments_] = {
-		{1,0,1,0,1,1,1,0}, //A
+		{1,1,1,0,1,1,1,0}, //A
 		{0,0,1,1,1,1,1,0}, //b
 		{1,0,0,1,1,1,0,0}, //C
 		{0,1,1,1,1,0,1,0}, //d

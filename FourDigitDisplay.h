@@ -1,6 +1,3 @@
-#ifndef FOURDIGITDISPLAY_HPP
-#define FOURDIGITDISPLAY_HPP
-
 /*
 	Author	: Jonathan Andrew Hobern
 	Date	: 19/12/15
@@ -9,6 +6,12 @@
 This library is used to power the SR420281K 7 segment (8 with decimal points), 4 digit displays.
 
 */
+
+#ifndef FOURDIGITDISPLAY_HPP
+#define FOURDIGITDISPLAY_HPP
+
+#include <Arduino.h>
+
 class FourDigitDisplay
 {
 public:
@@ -28,6 +31,11 @@ public:
 		The text is left justified.
 	*/
 	void displayText(const char* text);
+
+	/*
+		displayText is overloaded to work with Arduino strings too, for ease of use
+	*/
+	void displayText(String text);
 
 private:
 	//These constants represent the number of digits and segments in the display
@@ -54,7 +62,7 @@ private:
 	//to display a particular digit.
 	//digitSegments_[n] is an array, with 1 in position m if segment m should be turned on
 	//in order to display digit n correctly, and a 0 in position m otherwise.
-	const int digitSegments_[10][num_segments_] = {
+	const char digitSegments_[10][num_segments_] = {
 		{1,1,1,1,1,1,0,0}, //0
 		{0,1,1,0,0,0,0,0}, //1
 		{1,1,0,1,1,0,1,0}, //2
@@ -71,7 +79,7 @@ private:
 	//to display a particular character.
 	//charactersSegments_[c-'a'] is an array, with 1 in position m if segment m should be turned on
 	//in order to display character c correctly, and a 0 in position m otherwise.
-	const int characterSegments_[26][num_segments_] = {
+	const char characterSegments_[26][num_segments_] = {
 		{1,0,1,0,1,1,1,0}, //A
 		{0,0,1,1,1,1,1,0}, //b
 		{1,0,0,1,1,1,0,0}, //C

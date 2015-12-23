@@ -1,5 +1,4 @@
 #include "FourDigitDisplay.h"
-#include <Arduino.h>
 
 FourDigitDisplay::FourDigitDisplay(const int digitPins[], const int segmentPins[])
 {
@@ -41,7 +40,7 @@ void FourDigitDisplay::displayCharacter(const char& character, const char& posit
 	}
 
 	//segments is used to point to the correct set of segments for displaying the character
-	const int* segments;
+	const char* segments;
 
 	//this character is a digit
 	if(character >= '0' && character <='9')
@@ -88,7 +87,7 @@ void FourDigitDisplay::displayCharacter(const char& character, const char& posit
 	//this delay is required in order to stop the characters "bleeding" into other positions
 	//If the delay is too high, there will be flickering on the digits. If the display is too low
 	//the will be bleeding.
-	delay(4);
+	delay(5);
 }
 
 void FourDigitDisplay::displayDigit(const char& value, const char& position)
@@ -123,5 +122,15 @@ void FourDigitDisplay::displayText(const char* text)
 	for(char i = 0; text[i] != 0 && i < num_digits_; i++)
 	{
 		displayCharacter(text[i], i);
+	}
+}
+
+void FourDigitDisplay::displayText(String text)
+{
+	//display characters until there are no more characters in the text,
+	//or we have run out of digits to use to display characters
+	for(int i = 0; i < text.length() && i < num_digits_; i++)
+	{
+		displayCharacter(text.charAt(i), i);
 	}
 }

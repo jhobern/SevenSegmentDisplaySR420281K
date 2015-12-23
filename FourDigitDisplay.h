@@ -37,6 +37,15 @@ public:
 	*/
 	void displayText(String text);
 
+
+	/*
+		displayScrollingText provides a method to display long strings on the small display.
+		The entire string is displayed one time per method call.
+		text is the string that is to be displayed
+		characterDelay is the length of time to wait before scrolling the text along one character
+	*/
+	void displayScrollingText(String text, long characterDelay);
+
 private:
 	//These constants represent the number of digits and segments in the display
 	static const int num_digits_ = 4;

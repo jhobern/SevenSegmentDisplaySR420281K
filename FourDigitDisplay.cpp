@@ -134,3 +134,18 @@ void FourDigitDisplay::displayText(String text)
 		displayCharacter(text.charAt(i), i);
 	}
 }
+
+
+void FourDigitDisplay::displayScrollingText(String text, long characterDelay)
+{
+	displayText(text);
+	for(int i = 0; i < text.length(); i++)
+	{
+		String section = text.substring(i, i + num_digits_); //the section of the text that can fit on the display
+		long start = millis();
+		while(millis() < start + characterDelay)
+		{
+			displayText(section);
+		}
+	}
+}
